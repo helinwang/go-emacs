@@ -46,8 +46,7 @@
   (go-guru-hl-identifier-mode)                    ; highlight identifiers
 
   ;; Key bindings specific to go-mode
-  (local-set-key (kbd "C-c C-j") 'go-guru-definition)
-  (local-set-key (kbd "C-c C-d") 'go-guru-describe)
+  (local-set-key (kbd "M-d") 'go-guru-describe)
   (local-set-key (kbd "M-.") 'go-guru-definition)
   (local-set-key (kbd "M-,") 'pop-tag-mark)
   (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
