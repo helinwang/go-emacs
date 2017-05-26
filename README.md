@@ -1,9 +1,8 @@
-### Usage
+### Install
 
-If you have never configured emacs, you can just do:
-```bash
-git clone git@github.com:helinwang/go-emacs.git ~/.emacs.d
-```
+Put the content of this repo to `~/.emacs.d`
+
+### Usage
 
 Hotkeys:
 ```lisp
