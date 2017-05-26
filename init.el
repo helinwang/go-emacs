@@ -67,9 +67,6 @@
   (require 'auto-complete-config)
   (ac-config-default))
 
-;; (setq yas-snippet-dirs
-;;       '("~/.emacs.d/snippets"))
-
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"                 ;; personal snippets
 	        ))
