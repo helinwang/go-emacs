@@ -6,7 +6,7 @@ git clone git@github.com:helinwang/go-emacs.git ~/.emacs.d
 ```
 
 Hotkeys:
-```
+```lisp
   (local-set-key (kbd "C-c C-j") 'go-guru-definition)
   (local-set-key (kbd "C-c C-d") 'go-guru-describe)
   (local-set-key (kbd "M-.") 'go-guru-definition)
@@ -18,7 +18,7 @@ Hotkeys:
 ```
 
 Snippets (triggered with tab):
-```
+```text
 iferr:
 
 if err != nil {
