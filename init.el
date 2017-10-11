@@ -5,7 +5,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+             '("melpa" . "https://melpa.org/packages/"))
 
 (package-initialize)
 
@@ -47,7 +47,7 @@
 
   ;; Key bindings specific to go-mode
   (local-set-key (kbd "M-d") 'go-guru-describe)
-  (local-set-key (kbd "M-.") 'go-guru-definition)
+  (local-set-key (kbd "M-.") 'godef-jump) ;'go-guru-definition)
   (local-set-key (kbd "M-,") 'pop-tag-mark)
   (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
   (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
@@ -69,10 +69,11 @@
 
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"                 ;; personal snippets
-	        ))
+                ))
 (yas-global-mode 1)
 
-;; (setq flycheck-gometalinter-disable-linters '("gotype" "gocyclo"))
+(setq flycheck-gometalinter-disable-linters '("checkstyle" "gotype"))
+(setq flycheck-gometalinter-deadline "20s")
 ;; (setq flycheck-gometalinter-disable-all t)
 ;; (setq flycheck-gometalinter-enable-linters '("golint" "errcheck"))
 
