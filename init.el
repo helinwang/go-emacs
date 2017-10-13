@@ -72,8 +72,10 @@
                 ))
 (yas-global-mode 1)
 
-(setq flycheck-gometalinter-disable-linters '("checkstyle" "gotype"))
-(setq flycheck-gometalinter-deadline "20s")
+(setq flycheck-gometalinter-vendor t)
+(setq flycheck-gometalinter-fast t)
+(setq flycheck-gometalinter-disable-linters '("gotype"))
+(setq flycheck-gometalinter-deadline "10s")
 ;; (setq flycheck-gometalinter-disable-all t)
 ;; (setq flycheck-gometalinter-enable-linters '("golint" "errcheck"))
 
