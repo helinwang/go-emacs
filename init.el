@@ -14,6 +14,10 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(add-to-list 'load-path "~/.emacs.d/misc/")
+(require 'popwin)
+(popwin-mode 1)
+
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
