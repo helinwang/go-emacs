@@ -17,6 +17,7 @@
 (add-to-list 'load-path "~/.emacs.d/misc/")
 (require 'popwin)
 (popwin-mode 1)
+(global-set-key (kbd "C-z") popwin:keymap)
 
 (use-package flycheck
   :ensure t
