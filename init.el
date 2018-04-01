@@ -51,7 +51,7 @@
   (go-guru-hl-identifier-mode)                    ; highlight identifiers
 
   ;; Key bindings specific to go-mode
-  (local-set-key (kbd "M-d") 'go-guru-describe)
+  ; (local-set-key (kbd "M-d") 'go-guru-describe) ; M-d is commonly used keybinding that deletes the word under the cursor.
   (local-set-key (kbd "M-.") 'godef-jump) ;'go-guru-definition)
   (local-set-key (kbd "M-,") 'pop-tag-mark)
   (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
