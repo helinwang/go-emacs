@@ -1,18 +1,24 @@
 ### Install
 
-1. Put the content of this repo to `~/.emacs.d`
+1. Backup your `~/.emacs` file and `~/.emacs.d` directory, and clone this repo to be your `~/.emacs.d`.
+   ```bash
+   mv ~/.emacs ~/.emacs.bak
+   mv ~/.emacs.d ~/.emacs.d.bak
+   git clone https://github.com/helinwang/go-emacs ~/.emacs.d
+   ```
+   
 1. Run following commands:
-  ```bash
-  go get -u golang.org/x/tools/cmd/...
-  go get -u github.com/rogpeppe/godef/...
-  go get -u github.com/nsf/gocode
-  go get -u golang.org/x/tools/cmd/goimports
-  go get -u golang.org/x/tools/cmd/guru
-  go get -u github.com/dougm/goflymake
-  go get -u github.com/alecthomas/gometalinter
-  gometalinter --install --update
-  go get -u golang.org/x/tools/cmd/gorename
-  ```
+   ```bash
+   go get -u golang.org/x/tools/cmd/...
+   go get -u github.com/rogpeppe/godef/...
+   go get -u github.com/nsf/gocode
+   go get -u golang.org/x/tools/cmd/goimports
+   go get -u golang.org/x/tools/cmd/guru
+   go get -u github.com/dougm/goflymake
+   go get -u github.com/alecthomas/gometalinter
+   gometalinter --install --update
+   go get -u golang.org/x/tools/cmd/gorename
+   ```
 
 ### Usage
 
