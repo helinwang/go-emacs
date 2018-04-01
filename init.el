@@ -45,7 +45,7 @@
   (setq gofmt-command "goimports")                ; gofmt uses invokes goimports
   (if (not (string-match "go" compile-command))   ; set compile command default
       (set (make-local-variable 'compile-command)
-	   "go build -i -v && go test -v && go vet"))
+	   "go install -i -v && go test -v && go vet"))
 
   ;; guru settings
   (go-guru-hl-identifier-mode)                    ; highlight identifiers
