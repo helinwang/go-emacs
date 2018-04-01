@@ -1,9 +1,10 @@
 ### Install
 
-1. Put the content of this repo to `~/.emacs.d`
+1. Backup your `~/.emacs` file and `~/.emacs.d` directory, and clone this repo to be your `~/.emacs.d`.
    ```bash
-   cd ~/.emacs.d/
-   git clone https://github.com/helinwang/go-emacs
+   mv ~/.emacs ~/.emacs.bak
+   mv ~/.emacs.d ~/.emacs.d.bak
+   git clone https://github.com/helinwang/go-emacs ~/.emacs.d
    ```
    
 1. Run following commands:
