@@ -57,8 +57,8 @@
   (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
   (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
   (local-set-key (kbd "M-m") 'go-guru-referrers)
-  ;; (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
-  ;; (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
+  (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
+  (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
 
   (go-eldoc-setup)
 
@@ -94,17 +94,3 @@
 ;; go get -u github.com/alecthomas/gometalinter
 ;; gometalinter --install --update
 ;; go get -u golang.org/x/tools/cmd/gorename
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (yasnippet go-eldoc auto-complete go-mode flycheck-gometalinter flycheck use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
