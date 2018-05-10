@@ -57,8 +57,10 @@
   (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
   (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
   (local-set-key (kbd "M-m") 'go-guru-referrers)
-  (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
-  (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
+  (define-key input-decode-map "\e\eOA" [(meta up)])
+  (define-key input-decode-map "\e\eOB" [(meta down)])
+  (local-set-key [(meta down)] 'next-error)         ; Go to next error (or msg)                                                                                                                                       
+  (local-set-key [(meta up)] 'previous-error)     ; Go to previous error or msg  
 
   (go-eldoc-setup)
 
