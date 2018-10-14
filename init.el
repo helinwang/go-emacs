@@ -52,7 +52,7 @@
 
   ;; Key bindings specific to go-mode
   (local-set-key (kbd "M-d") 'go-guru-describe)
-  (local-set-key (kbd "M-.") 'godef-jump) ;'go-guru-definition)
+  (local-set-key (kbd "M-.") 'go-guru-definition) ; 'godef-jump)
   (local-set-key (kbd "M-,") 'pop-tag-mark)
   (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
   (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
