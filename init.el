@@ -1,6 +1,11 @@
 (menu-bar-mode -1)
+(tool-bar-mode -1)
+(toggle-scroll-bar -1)
+
+(setq inhibit-startup-screen t)
 
 (global-set-key "\M-g" 'goto-line)
+(global-set-key (kbd "C--") 'undo)
 
 (require 'package)
 (setq package-enable-at-startup nil)
