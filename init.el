@@ -3,9 +3,9 @@
 (tool-bar-mode -1)
 
 (setq inhibit-splash-screen t)
-(require 'bookmark)
-(bookmark-bmenu-list)
-(switch-to-buffer "*Bookmark List*")
+;; (require 'bookmark)
+;; (bookmark-bmenu-list)
+;; (switch-to-buffer "*Bookmark List*")
 
 (global-set-key "\M-g" 'goto-line)
 (global-set-key (kbd "C--") 'undo)
@@ -89,7 +89,7 @@ There are two things you can do about this warning:
   (local-set-key (kbd "M-?") 'go-guru-referrers)
   (define-key input-decode-map "\e\eOA" [(meta up)])
   (define-key input-decode-map "\e\eOB" [(meta down)])
-  (local-set-key [(meta down)] 'next-error)         ; Go to next error (or msg)                                                                                                                                       
+  (local-set-key [(meta down)] 'next-error)         ; Go to next error (or msg)
   (local-set-key [(meta up)] 'previous-error)     ; Go to previous error or msg  
 
   (go-eldoc-setup)
@@ -109,6 +109,14 @@ There are two things you can do about this warning:
       '("~/.emacs.d/snippets"                 ;; personal snippets
                 ))
 (yas-global-mode 1)
+
+;; custom commands
+(defun other-window-backward ()
+  "Select the previous window."
+  (interactive)
+  (other-window -1))
+(global-set-key "\C-p" 'other-window-backward)
+(global-set-key "\C-n" 'other-window)
 
 (setq flycheck-gometalinter-vendor t)
 (setq flycheck-gometalinter-fast t)
