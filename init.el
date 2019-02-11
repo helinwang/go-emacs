@@ -1,28 +1,53 @@
 (menu-bar-mode -1)
+(toggle-scroll-bar -1) 
 (tool-bar-mode -1)
-(toggle-scroll-bar -1)
 
-(setq inhibit-startup-screen t)
+(setq inhibit-splash-screen t)
+(require 'bookmark)
+(bookmark-bmenu-list)
+(switch-to-buffer "*Bookmark List*")
 
 (global-set-key "\M-g" 'goto-line)
 (global-set-key (kbd "C--") 'undo)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 (require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  (when no-ssl
+    (warn "\
+Your version of Emacs does not support SSL connections,
+which is unsafe because it allows man-in-the-middle attacks.
+There are two things you can do about this warning:
+1. Install an Emacs version that does support SSL and be safe.
+2. Remove this warning from your init file so you won't see it again."))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  ;;(add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
+
+(require 'helm-config)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(helm-mode 1)
+
+;; (require 'shackle)
+;; (shackle-mode 1)
+;; (setq shackle-rules '((compilation-mode :noselect t))
+;;       shackle-default-rule '(:select t))
+
+(global-set-key (kbd "C-c f") #'helm-projectile-find-file-dwim)
+(global-set-key (kbd "C-c c") #'helm-projectile-ack)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-
-(add-to-list 'load-path "~/.emacs.d/misc/")
-(require 'popwin)
-(popwin-mode 1)
-(global-set-key (kbd "C-z") popwin:keymap)
 
 (use-package flycheck
   :ensure t
@@ -61,7 +86,7 @@
   (local-set-key (kbd "M-,") 'pop-tag-mark)
   (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
   (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
-  (local-set-key (kbd "M-m") 'go-guru-referrers)
+  (local-set-key (kbd "M-?") 'go-guru-referrers)
   (define-key input-decode-map "\e\eOA" [(meta up)])
   (define-key input-decode-map "\e\eOB" [(meta down)])
   (local-set-key [(meta down)] 'next-error)         ; Go to next error (or msg)                                                                                                                                       
