@@ -111,10 +111,10 @@ There are two things you can do about this warning:
 (yas-global-mode 1)
 
 ;; custom commands
-(defun other-window-backward ()
-  "Select the previous window."
-  (interactive)
-  (other-window -1))
+(defun other-window-backward (n)
+  "Select the Nth previous window."
+  (interactive "p")
+  (other-window (- n)))
 (global-set-key "\C-p" 'other-window-backward)
 (global-set-key "\C-n" 'other-window)
 
