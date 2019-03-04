@@ -134,3 +134,6 @@ There are two things you can do about this warning:
 ;; go get -u github.com/alecthomas/gometalinter
 ;; gometalinter --install --update
 ;; go get -u golang.org/x/tools/cmd/gorename
+
+(require 'ace-window)
+(global-set-key (kbd "M-o") 'ace-window)
