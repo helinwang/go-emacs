@@ -110,13 +110,16 @@ There are two things you can do about this warning:
                 ))
 (yas-global-mode 1)
 
-;; custom commands
-(defun other-window-backward (&optional n)
-  "Select the Nth previous window."
-  (interactive "p")
-  (other-window (if n (- n) -1)))
-(global-set-key "\C-p" 'other-window-backward)
-(global-set-key "\C-n" 'other-window)
+(require 'highlight-symbol)
+(global-set-key (kbd "M-n") 'highlight-symbol-next)
+(global-set-key (kbd "M-p") 'highlight-symbol-prev)
+
+(defun my-hook ()
+  (setq highlight-symbol-nav-mode t)
+  (setq highlight-symbol-mode t)
+  (setq highlight-symbol-idle-delay 0.3)
+)
+(add-hook 'after-change-major-mode-hook 'my-hook)
 
 (setq flycheck-gometalinter-vendor t)
 (setq flycheck-gometalinter-fast t)
