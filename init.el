@@ -140,3 +140,24 @@ There are two things you can do about this warning:
 
 (require 'ace-window)
 (global-set-key (kbd "M-o") 'ace-window)
+
+;; Rust
+;; https://github.com/rust-lang/rust-mode
+(add-to-list 'load-path "~/.emacs.d/rust/")
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+(setq rust-format-on-save t)
+
+;; https://github.com/flycheck/flycheck-rust
+(require 'flycheck-rust)
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+;; https://github.com/racer-rust/emacs-racer
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+
+(require 'rust-mode)
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
