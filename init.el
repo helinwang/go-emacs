@@ -140,6 +140,7 @@ There are two things you can do about this warning:
 
 (require 'ace-window)
 (global-set-key (kbd "M-o") 'ace-window)
+(global-set-key (kbd "M-j") 'xref-find-definitions)
 
 ;; Rust
 ;; https://github.com/rust-lang/rust-mode
@@ -155,6 +156,8 @@ There are two things you can do about this warning:
 
 ;; https://github.com/racer-rust/emacs-racer
 (add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'rust-mode-hook
+	  (lambda () (local-set-key (kbd "C-c r") #'rust-run)))
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 
