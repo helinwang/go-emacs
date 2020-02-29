@@ -84,8 +84,16 @@ There are two things you can do about this warning:
   (package-install 'use-package))
 
 (use-package flycheck
+  :hook (prog-mode . flycheck-mode)
+  :demand t
   :ensure t
-  :init (global-flycheck-mode))
+  :bind
+  ("M-<down>" . next-error)
+  ("M-<up>" . previous-error)
+  :init
+  (global-flycheck-mode)
+  (setq flycheck-standard-error-navigation nil))
+
 (use-package flycheck-gometalinter
   :ensure t
   :config
@@ -118,8 +126,8 @@ There are two things you can do about this warning:
   (local-set-key (kbd "M-d") 'go-guru-describe)
   (local-set-key (kbd "M-.") 'go-guru-definition) ; 'godef-jump)
   (local-set-key (kbd "M-,") 'pop-tag-mark)
-  (local-set-key (kbd "M-p") 'compile)            ; Invoke compiler
-  (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
+  (local-set-key (kbd "C-c b") 'compile)            ; Invoke compiler
+  ;; (local-set-key (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
   (local-set-key (kbd "M-?") 'go-guru-referrers)
   (define-key input-decode-map "\e\eOA" [(meta up)])
   (define-key input-decode-map "\e\eOB" [(meta down)])
