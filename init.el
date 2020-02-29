@@ -3,6 +3,8 @@
 (tool-bar-mode -1)
 (set-face-attribute 'region nil :background "#fffacd")
 
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 (setq inhibit-splash-screen t)
 ;; (require 'bookmark)
 ;; (bookmark-bmenu-list)
