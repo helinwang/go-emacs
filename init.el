@@ -30,11 +30,42 @@ There are two things you can do about this warning:
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
-(require 'helm-config)
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
-(helm-mode 1)
+
+(require 'zenburn-theme)
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+(use-package ag)
+
+(use-package helm-ag
+  :after ag)
+
+(use-package helm-projectile
+  :after helm
+  :config
+  (helm-projectile-on))
+
+(use-package diminish)
+
+(use-package helm
+  :diminish helm-mode
+  :init
+  (require 'helm-config)
+  :bind
+  ("C-c f" . helm-projectile-find-file-dwim)
+  ("M-x" . helm-M-x)
+  ("C-x r b" . helm-filtered-bookmarks)
+  ("C-x C-f" . helm-find-files)
+  :init
+  (helm-mode 1)
+  (customize-set-variable 'helm-ff-lynx-style-map t))
+
+;; (require 'helm-config)
+;; (global-set-key (kbd "M-x") #'helm-M-x)
+;; (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+;; (global-set-key (kbd "C-x C-f") #'helm-find-files)
+;; (helm-mode 1)
 
 ;; (require 'shackle)
 ;; (shackle-mode 1)
@@ -110,16 +141,28 @@ There are two things you can do about this warning:
                 ))
 (yas-global-mode 1)
 
-(require 'highlight-symbol)
-(global-set-key (kbd "M-n") 'highlight-symbol-next)
-(global-set-key (kbd "M-p") 'highlight-symbol-prev)
 
-(defun my-hook ()
+
+(use-package highlight-symbol
+  :hook (prog-mode . highlight-symbol-mode)
+  :bind
+  ("M-n" . highlight-symbol-next)
+  ("M-p" . highlight-symbol-prev)
+  :config
   (setq highlight-symbol-nav-mode t)
   (setq highlight-symbol-mode t)
-  (setq highlight-symbol-idle-delay 0.3)
-)
-(add-hook 'after-change-major-mode-hook 'my-hook)
+  (setq highlight-symbol-idle-delay 0.3))
+
+;; (require 'highlight-symbol)
+;; (global-set-key (kbd "M-n") 'highlight-symbol-next)
+;; (global-set-key (kbd "M-p") 'highlight-symbol-prev)
+
+;; (defun my-hook ()
+;;   (setq highlight-symbol-nav-mode t)
+;;   (setq highlight-symbol-mode t)
+;;   (setq highlight-symbol-idle-delay 0.3)
+;; )
+;; (add-hook 'after-change-major-mode-hook 'my-hook)
 
 (setq flycheck-gometalinter-vendor t)
 (setq flycheck-gometalinter-fast t)
@@ -138,34 +181,51 @@ There are two things you can do about this warning:
 ;; gometalinter --install --update
 ;; go get -u golang.org/x/tools/cmd/gorename
 
-(require 'ace-window)
-(global-set-key (kbd "M-o") 'ace-window)
+
+(use-package ace-window
+  :bind ("M-o" . ace-window))
+
 (global-set-key (kbd "M-j") 'xref-find-definitions)
 
-;; Rust
-;; https://github.com/rust-lang/rust-mode
-(add-to-list 'load-path "~/.emacs.d/rust/")
-(autoload 'rust-mode "rust-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
-(setq rust-format-on-save t)
+;; ;; Rust
+;; ;; https://github.com/rust-lang/rust-mode
+;; (add-to-list 'load-path "~/.emacs.d/rust/")
+;; (autoload 'rust-mode "rust-mode" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+;; (setq rust-format-on-save t)
 
 ;; https://github.com/flycheck/flycheck-rust
-(require 'flycheck-rust)
-(with-eval-after-load 'rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+;; (require 'flycheck-rust)
+;; (with-eval-after-load 'rust-mode
+;;   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;; https://github.com/racer-rust/emacs-racer
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'rust-mode-hook
-	  (lambda () (local-set-key (kbd "C-c r") #'rust-run)))
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
+;; (add-hook 'rust-mode-hook #'racer-mode)
+;; (add-hook 'rust-mode-hook
+;; 	  (lambda () (local-set-key (kbd "C-c r") #'rust-run)))
+;; (add-hook 'racer-mode-hook #'eldoc-mode)
+;; (add-hook 'racer-mode-hook #'company-mode)
 
-(setq racer-rust-src-path
-      (concat (string-trim
-               (shell-command-to-string "rustc --print sysroot"))
-              "/lib/rustlib/src/rust/src"))
+;; (setq racer-rust-src-path
+;;       (concat (string-trim
+;;                (shell-command-to-string "rustc --print sysroot"))
+;;               "/lib/rustlib/src/rust/src"))
 
-(require 'rust-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
+;; (require 'rust-mode)
+;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+;; (setq company-tooltip-align-annotations t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (zenburn)))
+ '(package-selected-packages
+   (quote
+    (zenburn-theme yasnippet use-package highlight-symbol helm-projectile helm-ag go-eldoc flycheck-gometalinter diminish auto-complete ag ace-window))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
